@@ -1,0 +1,17 @@
+{% extends "magasin/base.html" %}
+
+{% block content %}
+<style>
+    /* Ajoutez votre style CSS ici */
+    h2 {
+        margin-top: 100px; /* Ajustez la valeur de la marge supérieure selon vos besoins */
+    }
+    a {
+        display: block; /* Permet de rendre le lien en bloc pour ajouter un espace en-dessous */
+        margin-top: 20px; /* Ajoute également de la marge au lien */
+    }
+</style>
+
+<h2>Vous êtes déconnecté.</h2>
+<a href="{% url 'login' %}">Se reconnecter</a>
+{% endblock %}

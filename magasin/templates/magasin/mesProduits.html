@@ -1,0 +1,52 @@
+
+{% extends 'magasin/base.html' %}
+{% block title %} Catalogue de produits {% endblock title %}
+{% block content %}
+<!-- body -->
+<div class="container-fluid mt-3">
+    <div class="row">
+       <!-- all products -->
+        <div id='products' class="col-lg-9 mx-auto">
+            <table class="table">
+                <tbody>
+                    {% for product in products %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            </tr><tr class="slightly-left"> <!-- Fermer la ligne précédente et ouvrir une nouvelle ligne -->
+                        {% endif %}
+                        <td > 
+                            <div id="{{ product.id }}" style="width: 40rem;" class="img1">
+                                <img class="img" src="{{ product.img.url }}" alt="Card image cap">
+                                <div>
+                                    <p>{{ product.libelle }}</p>
+                                    <p class="d1"><b>{{ product.description }}</b></p>
+                                </div>
+                            </div>
+                        </td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+    .d1{
+        text-align: justify;
+        
+    }
+   
+    .img {
+        height: 50%;
+        width: 170px;
+        margin-top: 20px;
+        margin-right: 30%;
+        margin-left: 30%;
+        
+    }
+    
+    
+    
+</style>
+
+{% endblock %}

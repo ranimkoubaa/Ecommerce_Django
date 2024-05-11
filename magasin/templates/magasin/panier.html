@@ -1,0 +1,136 @@
+{% extends "magasin/base.html" %}
+
+{% block content %}
+<div class="cart-section">
+    <h1>Votre Panier</h1>
+    {% if elements_panier %}
+        <div class="cart-collection">
+            {% for element in elements_panier %}
+                <div class="cart-item">
+                    <img src="{{ element.produit.img.url }}" alt="{{ element.produit.libelle }}" />
+                    <div class="item-details">
+                        <h4>{{ element.produit.libelle }}</h4>
+                        <p>Prix unitaire: ${{ element.produit.prix }}</p>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('{{ element.id }}', 'decrement')">-</button>
+                            <span id="quantity-{{ element.id }}">{{ element.quantite }}</span>
+                            <button onclick="updateQuantity('{{ element.id }}', 'increment')">+</button>
+                        </div>
+                        <a href="{% url 'supprimer_produit_panier' element.id %}" class="remove-item">
+                            <i class="fa fa-trash"></i> Supprimer
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <p class="cart-total">Total: ${{ total }}</p>
+        <a href="{% url 'process_paiement' %}" class="btn btn-primary">Procéder au paiement</a>
+    {% else %}
+        <p>Votre panier est vide.</p>
+    {% endif %}
+</div>
+
+<!-- JavaScript pour les interactions -->
+<script>
+    function updateQuantity(elementId, action) {
+        const quantityElement = document.getElementById(`quantity-${elementId}`);
+        let currentQuantity = parseInt(quantityElement.textContent);
+
+        if (action === 'increment') {
+            currentQuantity += 1;
+        } else if (action === 'decrement' && currentQuantity > 1) {
+            currentQuantity -= 1;
+        }
+
+        // Mettre à jour la quantité affichée
+        quantityElement.textContent = currentQuantity;
+
+        // Mettre à jour le total du panier en appelant une fonction backend (non implémentée ici)
+        updateCartTotal();
+    }
+
+    function updateCartTotal() {
+        let total = 0;
+
+        // Calculer le nouveau total en parcourant tous les éléments du panier affichés
+        {% for element in elements_panier %}
+            const quantity = parseInt(document.getElementById(`quantity-{{ element.id }}`).textContent);
+            const prixUnitaire = {{ element.produit.prix }};
+            total += quantity * prixUnitaire;
+        {% endfor %}
+
+        // Mettre à jour l'élément HTML affichant le total du panier
+        const cartTotalElement = document.querySelector('.cart-total');
+        cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
+    }
+</script>
+
+<style>
+    .cart-section {
+        padding: 20px;
+        border: 1px solid #ccc;
+        margin-top: 60px;
+        border-radius: 5px;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .cart-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+
+    .item-details {
+        flex-grow: 1;
+    }
+
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .quantity-controls button {
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        margin-right: 5px;
+    }
+
+    .remove-item {
+        color: #dc3545;
+        text-decoration: none;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    .remove-item:hover {
+        text-decoration: underline;
+    }
+
+    .cart-total {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .btn-primary {
+        margin-top: 20px;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+

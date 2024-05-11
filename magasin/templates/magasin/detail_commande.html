@@ -1,0 +1,13 @@
+{% extends 'magasin/base.html' %}
+
+{% block content %}
+  <h1>Détails de la Commande {{ commande.id }}</h1>
+  <p>Date de commande: {{ commande.dateCde }}</p>
+  <p>Total commande: {{ commande.totalCde }} DT</p>
+  <h2>Produits:</h2>
+  <ul>
+    {% for produit in commande.produits.all %}
+      <li>{{ produit.nom }}  {{ produit.prix }} DT</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "magasin/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-image: url('/static/images/graphe.jpg');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+    }
+
+    .login-container h2 {
+        text-align: center;
+        color: #333333;
+    }
+
+    .login-container form {
+        margin-top: 20px;
+    }
+
+    .login-container table {
+        width: 100%;
+    }
+
+    .login-container table td {
+        padding: 10px;
+    }
+
+    .login-container .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        padding: 5px;
+        border-radius: 4px;
+    }
+
+    .login-container button[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-container button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .login-container small {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #666666;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Se connecter</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class="alert alert-danger">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <table>
+            {% for field in form %}
+                <tr>
+                    <td>{{ field.label_tag }}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Se connecter</button>
+    </form>
+    <small>
+        Pas encore inscrit.e? <a href="{% url 'register' %}">S'inscrire</a>
+        <br>
+        Mot de passe oublié? <a href="{% url 'password_reset' %}">Renouveler mon mot de passe</a>
+    </small>
+</div>
+{% endblock %}

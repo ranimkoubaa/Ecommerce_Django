@@ -1,0 +1,12 @@
+<!-- magasin/templates/magasin/modifier_commande.html -->
+
+{% extends 'magasin/base.html' %}
+
+{% block content %}
+  <h1>Modifier la Commande</h1>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends 'magasin/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <!-- Bannière d'accueil -->
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Bienvenue sur Mon Site</h1>
+      <p class="lead">Découvrez nos produits exceptionnels et profitez de nos offres spéciales.</p>
+      
+    </div>
+    <div id="carouselExample" class="carousel slide" data-ride="carousel"style="width:600px; margin-left:200px;">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'images/hero-image.png' %}" class="d-block w-100" alt="Image 1">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/i1.png' %}" class="d-block w-100" alt="Image 2">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/about-3.png' %}" class="d-block w-100" alt="Image 3">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Suivant</span>
+        </a>
+      </div>
+    
+<div class="container mt-5">
+  <div class="row" style="margin-top:100px">
+    {% for article in list %}
+      <div class="col-md-4 mb-4">
+        <div class="card flex-fill w-100">
+          <img src="{% if article.img %}/media/{{ article.img }}{% else %}{% static 'images/default.png' %}{% endif %}" class="card-img-top custom-image" alt="{{ article.libelle }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.libelle }}</h5>
+            <p class="card-text">{{ article.prix }} DT.</p>
+           
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+<style>
+  /* Styles pour chaque produit dans le tableau */
+  .card {
+    border: 1px solid #000; /* Bordure par défaut */
+    transition: border 0.3s ease-in-out; /* Animation de transition pour le cadre */
+    cursor: pointer; /* Curseur au survol */
+    height: 100%; /* Pour assurer que toutes les cartes ont la même hauteur */
+  }
+
+  /* Styles au survol de la carte */
+  .card:hover {
+    border: 2px solid #D10024; /* Cadre rouge au survol */
+  }
+
+  /* Styles au survol de la légende */
+  .card:hover .card-title {
+    color: #D10024; /* Texte rouge au survol */
+  }
+
+  /* Styles au survol du prix */
+  .card:hover .card-text {
+    color: #D10024; /* Texte rouge au survol */
+  }
+
+  /* Styles pour chaque image */
+  .custom-image {
+    width: 100%; /* Largeur de l'image à 100% */
+    height: 100%; /* Hauteur fixe de l'image (ajustez selon vos besoins) */
+    object-fit: cover; /* Assure que l'image conserve ses proportions */
+  }
+  
+
+</style>
+<!--
+
+
+    <form method='POST' class="post-form">
+        {% csrf_token %}
+        <div class="container">
+            <div style="overflow:scroll; border:#000000 1px solid; margin-top:100px">
+                <table>
+                    <tr>
+                        {% for article in list %}
+                            <td>
+                                <img src='/media/{{ article.img }}'
+                                class="rounded float-start"
+                                height="200px"
+                                width="200px"
+                                 alt="">
+                                <figcaption class="figure-caption">
+                                    {{ article.libelle }}
+                                </figcaption>
+                                <p> {{ article.img.url }} </p>
+                                <p> {{ article.prix }} DT. </p>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+    <style>
+        /* Styles pour chaque produit dans le tableau */
+.container td {
+    border: 1px solid #000; /* Bordure par défaut */
+    padding: 10px; /* Espacement interne */
+    transition: border 0.3s ease-in-out; /* Animation de transition pour le cadre */
+    cursor: pointer; /* Curseur au survol */
+}
+
+/* Styles au survol de l'image */
+.container td:hover {
+    border: 2px solid #D10024; /* Cadre rouge au survol */
+}
+
+/* Styles au survol de la légende */
+.container td:hover figcaption {
+    color: #D10024; /* Texte rouge au survol */
+}
+
+/* Styles au survol du prix */
+.container td:hover p:last-child {
+    color: #D10024; /* Texte rouge au survol */
+}
+</style>
+-->
+{% endblock %}
+
+
+
+
+

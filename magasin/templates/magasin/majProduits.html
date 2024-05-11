@@ -1,0 +1,101 @@
+{% extends 'magasin/base.html' %}
+{% block content %}
+<!--<style>
+   /* CSS personnalisé pour ce modèle */
+   .col-md-12 {
+       color: #333;
+       font-size: 24px;
+       text-align: center;
+       margin-bottom: 20px;
+   }
+
+   .post-form {
+       margin: 0 auto;
+       max-width: 500px;
+       padding: 20px;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+   }
+
+   .btn-default {
+       background-color: #007bff;
+       color: #fff;
+       border: none;
+       padding: 10px 20px;
+       border-radius: 5px;
+       cursor: pointer;
+   }
+</style>
+ <div class="col-md-12 text-center">
+ <h2>Manip Produit ...... </h2>
+ </div>
+ <form method='POST' class="post-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="sumit" class="btn btn-default" >Enregistrer</button>
+ </form>
+-->
+
+<style>
+   /* CSS personnalisé pour ce modèle */
+   .col-md-12 {
+       color: #333;
+       font-size: 24px;
+       text-align: center;
+       margin-bottom: 20px;
+   }
+
+   .post-form {
+       margin: 0 auto;
+       max-width: 500px;
+       padding: 20px;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+       background-color: #f9f9f9; /* Couleur de fond pour le formulaire */
+       margin-top: 20px;
+   }
+
+   .post-form input[type="text"],
+   .post-form textarea {
+       width: 100%;
+       padding: 10px;
+       border: 1px solid #ddd;
+       border-radius: 5px;
+       box-sizing: border-box;
+       margin-bottom: 10px;
+   }
+
+   .btn-default {
+       background-color: #ff0000; /* Couleur rouge pour le bouton */
+       color: #fff;
+       border: none;
+       padding: 10px 20px;
+       border-radius: 5px;
+       cursor: pointer;
+       display: block; /* Pour centrer le bouton */
+       margin: 0 auto; /* Pour centrer le bouton */
+   }
+
+   /* Style pour le titre "Ajouter un produit" */
+   .title {
+       font-family: 'Arial', sans-serif; /* Police de caractères */
+       font-size: 32px; /* Taille de la police */
+       color: #fff; /* Couleur du texte */
+       text-align: center; /* Alignement du texte */
+       background-color: #ff0000; /* Couleur de fond du titre */
+       padding: 20px; /* Espacement intérieur du titre */
+       border-radius: 5px; /* Coins arrondis */
+       margin-top: 50px; /* Marge en bas du titre */
+   }
+</style>
+
+<div class="title">
+    Ajouter un produit
+</div>
+
+<form method='POST' class="post-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-default">Enregistrer</button>
+</form>
+{% endblock %}

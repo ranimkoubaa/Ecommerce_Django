@@ -1,0 +1,61 @@
+{% extends 'magasin/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des fournisseurs</title>
+
+    <style>
+        /* Styles CSS personnalisés pour ce modèle */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            padding: 70px;
+        }
+        
+        h1, h2 {
+            text-align: center;
+            color: black;
+            
+            
+            
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="titre">
+    <h1>Gestion des fournisseurs</h1>
+
+    <!-- Formulaire pour ajouter un nouveau fournisseur -->
+    
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ajouter fournisseur</button>
+    </form>
+</body>
+</html>
+{% endblock %}

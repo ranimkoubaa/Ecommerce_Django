@@ -1,0 +1,15 @@
+#conteneur
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-nav li:hover a::after {
+    content: "";
+    display: block;
+    width: 100%; /* Pleine largeur */
+    height: 2px; /* Hauteur de la ligne */
+    background-color: #D10024; /* Couleur de la ligne */
+    transition: width 0.2s; /* Animation optionnelle */
+}
+

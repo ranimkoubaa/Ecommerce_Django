@@ -1,0 +1,111 @@
+{% extends 'magasin/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des fournisseurs</title>
+    <style>
+        /* Style pour le titre */
+        h1 {
+            margin-top: 50px;
+            text-align: center;
+            color: #333; /* Couleur du texte */
+            font-size: 2.5rem; /* Taille de police */
+        }
+
+        /* Style pour la liste des fournisseurs */
+        .fournisseur {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .fournisseur:hover {
+            transform: translateY(-5px);
+            background-color: #e5e5e5;
+        }
+
+        .info {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .nom {
+            font-size: 1.5rem; /* Taille de police augmentée */
+        }
+
+        .email,
+        .telephone {
+            font-size: 1.2rem; /* Taille de police augmentée */
+        }
+
+
+        form {
+            text-align: center; /* Centrer le contenu du formulaire */
+            margin-top: 20px; /* Marge au-dessus du formulaire */
+        }
+    
+        input[type="text"] {
+            padding: 8px; /* Rembourrage intérieur du champ de texte */
+            border: 1px solid #ccc; /* Bordure autour du champ de texte */
+            border-radius: 4px; /* Coins arrondis */
+            width: 300px; /* Largeur du champ de texte */
+            margin-right: 10px; /* Marge à droite du champ de texte */
+        }
+    
+        button[type="submit"] {
+            padding: 8px 16px; /* Rembourrage intérieur du bouton */
+            background-color: #007bff; /* Couleur de fond du bouton */
+            color: #fff; /* Couleur du texte du bouton */
+            border: none; /* Pas de bordure */
+            border-radius: 4px; /* Coins arrondis */
+            cursor: pointer; /* Curseur de la souris */
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Couleur de fond au survol */
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Liste des fournisseurs</h1>
+    <form method="GET">
+        <input type="text" name="q" placeholder="Rechercher un fournisseur..." value="{{ query }}">
+        <button type="submit">Rechercher</button>
+    </form>
+    <div class="fournisseurs">
+        {% for fournisseur in fournisseurs %}
+        <div class="fournisseur">
+            <div class="nom info">{{ fournisseur.nom }}</div>
+            <div class="email info">Email : {{ fournisseur.email }}</div>
+            <div class="email info">adresse: {{ fournisseur.adresse }}</div>
+            <div class="telephone info">Téléphone : {{ fournisseur.telephone }}</div>
+        </div>
+        <div style="width: 350px;">
+            <a href="{% url 'detail_Fournisseur' for_id=fournisseur.id %}"
+                                        class="btn btn-primary">Voir détails</a>
+            <a href="{% url 'delete_Fournisseur' fournisseur.id %}"
+                class="btn btn-danger">Supprimer</a>
+                <a href="{% url 'edit_Fournisseur' fournisseur.id %}"
+                                        class="btn btn-success">Modifier</a>
+            
+        </div>
+        {% empty %}
+        <p>Aucun fournisseur trouvé.</p>
+    
+
+
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

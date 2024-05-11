@@ -1,0 +1,48 @@
+{% extends "magasin/base.html" %}
+
+{% block content %}
+<div class="paiement-section">
+    <h1>Processus de paiement</h1>
+
+    <div class="paiement-details">
+        <div class="confirmation-message">
+            <i class="fas fa-check-circle"></i>
+            <p>Votre paiement a été effectué avec succès ! Merci pour votre commande.</p>
+        </div>
+        
+        <!-- Autres détails ou contenu de la page de confirmation... -->
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    /* Styles pour la section de confirmation */
+    .paiement-section {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-top: 60px;
+    }
+
+    .paiement-details {
+        margin-top: 20px;
+    }
+
+    .confirmation-message {
+        display: flex;
+        align-items: center;
+        background-color: #dff0d8;
+        color: #155724;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .confirmation-message i {
+        font-size: 24px;
+        margin-right: 10px;
+        color: #155724; /* Couleur verte */
+    }
+</style>

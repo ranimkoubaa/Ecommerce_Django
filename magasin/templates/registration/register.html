@@ -1,0 +1,97 @@
+{% extends 'magasin/base.html' %}
+{% block content %}
+<style>
+    body {
+        background-image: url('/static/images/graphe.jpg');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+        margin-top: 100px
+    }
+
+    .form-container h2 {
+        text-align: center;
+        color: #333333;
+    }
+
+    .form-container form {
+        margin-top: 20px;
+    }
+
+    .form-container table {
+        width: 100%;
+    }
+
+    .form-container table td {
+        padding: 10px;
+    }
+
+    .form-container .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        padding: 5px;
+        border-radius: 4px;
+    }
+
+    .form-container button[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-container button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .form-container small {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #666666;
+    }
+</style>
+
+<div class="form-container">
+    <h2>S'inscrire</h2>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {% for field in form %}
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
+            </tr>
+            {% for error in field.errors %}
+            <tr>
+                <td></td>
+                <td class="alert alert-danger">{{ error }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </table>
+        <button type="submit">S'inscrire</button>
+    </form>
+    <small>Déjà inscrit.e? <a href="{% url 'login' %}">Se connecter</a></small>
+</div>
+{% endblock %}
+
+
